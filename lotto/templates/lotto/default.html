@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<!-- {%~~~}: 장고 탬플릿 태그 -->
+<!-- 장고 static file 로딩 -->
+{% load static %}
+
+<html lang="ko">
+<head>
+  <title>My Little Lotto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- 부트스트랩 css파일 활용-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  
+  <!-- 구글 웹 폰트 활용-->
+  <!-- 원하는 폰트 눌러서 링크 복붙-->
+  <link href="//fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+  <!-- css 파일 (static 파일) 추가 -->
+  <link rel='stylesheet' href = "{% static 'css/lotto.css' %}" >
+
+</head>
+
+<body>
+    <div class="page-header">
+      <h1>
+  Selected Lotto Numbers
+        <a href="{% url 'new_lotto' %}"> <!-- URL-Reversing -->
+          <span class="glyphicon glyphicon-plus btn btn-default"></span>
+        </a>
+      </h1>
+    </div>
+  </div>
+  <div class="container lotto">
+
+    {% for lotto in lottos %}
+      <h2><a HREF="{% url 'detail' lottokey=lotto.id %}">{{ lotto.text }}</a></h2>
+      <p>{{ lotto.update_date }}</p>
+      <p>{{ lotto.lottos | linebreaksbr }}</p>
+    {% endfor %}
+
+  </div>
+</body>
+</html>
